@@ -20,6 +20,4 @@ Prerequisites
 Visual Studio 2022 or later
 MySQL Server installed and running
 MySQL Workbench (optional for managing DB)
-Clone the Repository
-git clone https://github.com/ArminaGjoka/Employee-Time-Logging-System.git
-cd Employee-Time-Logging-System
+
