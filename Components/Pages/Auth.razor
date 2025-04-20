@@ -1,0 +1,22 @@
+﻿@page "/auth"
+
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.EntityFrameworkCore
+@using Timbratura_Testo.Data
+@attribute [Authorize]
+
+@inject UserManager<IdentityUser> UserManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject ApplicationDbContext DbContext
+
+<PageTitle>Auth</PageTitle>
+
+<h1>You are authenticated</h1>
+
+<AuthorizeView>
+    <Authorized>
+        <p>Hello @context.User.Identity?.Name!</p>
+    </Authorized>
+</AuthorizeView>
+}

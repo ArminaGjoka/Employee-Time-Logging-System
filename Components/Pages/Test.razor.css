@@ -1,0 +1,29 @@
+﻿.rounded-button {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.rounded-button.used {
+    opacity: 0.5;
+}
+.custom{
+    background: red;
+}
+
+.custom {
+    background: red;
+}
+
+/* More specific selector for MudTable */
+.mud-table.custom {
+    background: red;
+}
+
+    /* Adjust the styles for MudTable rows */
+    .mud-table.custom .mud-table-row {
+        background: red;
+    }

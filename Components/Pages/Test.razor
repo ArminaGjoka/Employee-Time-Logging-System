@@ -1,0 +1,54 @@
+﻿@page "/test"
+@using Timbratura_Testo.Models
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.EntityFrameworkCore
+@using Timbratura_Testo.Data
+@using MudBlazor
+@attribute [Authorize]
+@inject NavigationManager NavigationManager
+@inject UserManager<ApplicationUser> UserManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject ApplicationDbContext DbContext
+
+<p class="custom-table">Ciao</p>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 d-flex justify-content-center align-items-center">
+                    <button type="button" class="btn btn-primary rounded-button btn-lg @(_isIngressoClicked ? "used" : "")" @onclick="TimbrareIngresso" disabled="@_IsLoading">Ingresso</button>
+                </div>
+                <div class="col-md-6 d-flex justify-content-center align-items-center">
+                    <button type="button" class="btn btn-primary rounded-button btn-lg @(_isUscitaClicked ? "used" : "")" @onclick="TimbrareUscita" disabled="@_IsLoading">Uscita</button>
+                </div>
+            </div>
+
+    <div class="mud-blazor-table">
+        <div class="col-md-12">
+     
+            @if (_timbratureList.Any())
+            {
+                <MudTable Items="_timbratureList" Class="custom-table">
+                    <HeaderContent>
+                        <MudTh>Data</MudTh>
+                        <MudTh>Ora Ingresso</MudTh>
+                        <MudTh>Ora Uscita</MudTh>
+                       
+                        <MudTh>Durata</MudTh>
+                    </HeaderContent>
+                    <RowTemplate>
+                        <MudTd>@context.EntryDate.ToString("dd/MM/yyyy")</MudTd>
+                        <MudTd>@context.EntryTime.ToString("HH:mm")</MudTd>
+                        <MudTd>@context.ExitTime?.ToString("HH:mm")</MudTd>
+                        
+                        <MudTd>@(context.Duration.HasValue ? TimeSpan.FromMinutes(context.Duration.Value).ToString(@"hh\:mm") : "N/A")</MudTd>
+                    </RowTemplate>
+                </MudTable>
+            }
+            else
+            {
+                <p>Nessuna timbratura disponibile.</p>
+            }
+        </div>
+    </div>
+</div>

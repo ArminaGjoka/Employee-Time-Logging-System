@@ -1,0 +1,53 @@
+﻿@inherits LayoutComponentBase
+
+<MudThemeProvider @bind-IsDarkMode="@_isDarkMode" Theme="_theme" />
+
+<MudBlazor.MudDialogProvider />
+<MudBlazor.MudSnackbarProvider />
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main class="main-content">
+        <article class="content px-4">
+            @Body
+        </article>
+        <div class="switch-container">
+            <MudSwitch @bind-Checked="@_isDarkMode" Color="Color.Primary" Class="ma-4" T="bool" Label="Light/Dark Mode" />
+        </div>
+    </main>
+</div>
+
+<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>
+
+<style>
+    .main-content {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    .content {
+        flex: 1;
+    }
+
+    .switch-container {
+        display: flex;
+        justify-content: center;
+        padding: 1rem;
+    }
+
+    .small-switch {
+        transform: scale(0.5);
+    }
+</style>
+
+@code {
+    private MudTheme _theme = new();
+    private bool _isDarkMode;
+}
